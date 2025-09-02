@@ -8,6 +8,11 @@ import streamlit as st
 import yfinance as yf
 from pathlib import Path
 
+reddit = praw.Reddit(
+    client_id="yrAGhMS2xOXBk98FOsNXhA", 
+    client_secret="2OsdUGswXKHMImthSz1abEzzKeKExw", 
+    user_agent="web:myredditapp:1.0.0(by/u/Linglaoyao)" 
+    
 # Safe in Streamlit runtime; harmless if imported elsewhere
 try:
     st.set_page_config(page_title="Reddit Sentiment & Backtest", layout="wide")
