@@ -10,11 +10,7 @@ from pathlib import Path
 import praw
 
 # Connect to Reddit (replace with your credentials)
-reddit = praw.Reddit(
-    client_id="yrAGhMS2xOXBk98FOsNXhA", 
-    client_secret="2OsdUGswXKHMImthSz1abEzzKeKExw", 
-    user_agent="web:myredditapp:1.0.0(by/u/Linglaoyao)"
-)
+
 
 # Safe in Streamlit runtime; harmless if imported elsewhere
 try:
