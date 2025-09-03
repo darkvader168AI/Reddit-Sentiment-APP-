@@ -1,0 +1,132 @@
+Got it ✅
+Here’s a structured project summary of our entire process together. I’ll make it self-contained, clear, and suitable for revisiting or sharing.
+
+---
+
+# **Project Summary: Reddit Sentiment Analyzer → Web App with Streamlit**
+
+---
+
+## **1. Sequence of Steps Taken**
+
+### **Phase A — Starting Point**
+
+* Began with a Python script (`Reddit Market Sentiment Analyzer.py`) that analyzed Reddit posts for stock tickers and sentiment.
+* The initial goal was to expand this script into:
+
+  1. A **sentiment analysis UI** (search a ticker → see posts, sentiment distribution, top discussions).
+  2. A **portfolio backtest module** (user inputs up to 5 stocks → see backtest vs SPY).
+
+---
+
+### **Phase B — Backtest Logic**
+
+* Added rules for **entry/exit signals**:
+
+  * Buy if sentiment > 0.05.
+  * Sell if sentiment < –0.05.
+  * Hold 1 day; equal-weight portfolio; 0.1% transaction cost.
+* Implemented metrics: Sharpe, Sortino, drawdown, cumulative/annualized returns.
+* Built logic to compare portfolio performance vs SPY (benchmark).
+
+---
+
+### **Phase C — UI Development (Streamlit)**
+
+* Rewrote the script into modular blocks:
+
+  * **Block A**: Imports & config.
+  * **Block B**: Data loaders.
+  * **Block C**: Price history (via yfinance).
+  * **Block D**: Strategy helpers & metrics.
+  * **Block E**: UI (ticker search + portfolio backtest).
+* Integrated **Plotly** for charts and **Streamlit** for dashboard interactivity.
+
+---
+
+### **Phase D — Platform Choice**
+
+* Evaluated deployment options:
+
+  * JupyterHub (too clunky for UI).
+  * Streamlit Community Cloud (free, beginner-friendly).
+* Decided to deploy on **Streamlit Cloud** since user had no CS background and wanted minimal friction.
+
+---
+
+### **Phase E — GitHub Setup**
+
+* Walked through creating a GitHub repo:
+
+  * Upload `app.py` (main script).
+  * Upload `analyzed_stock_data.csv` (sentiment data).
+  * Add `requirements.txt` (dependencies).
+* Linked GitHub repo to Streamlit Cloud for auto-deployment.
+
+---
+
+### **Phase F — Debugging Deploy Errors**
+
+* Errors encountered:
+
+  1. **Missing packages** (`plotly` not found).
+  2. Wrong syntax (`!pip install` used inside app.py → invalid in production).
+  3. Issues with Streamlit caching/unhashable lists.
+* Fixes applied:
+
+  * Added a **proper `requirements.txt`** with pinned versions.
+  * Added **`runtime.txt`** to lock Python version.
+  * Implemented an **install guard** inside `app.py` to auto-install libs if Streamlit cache ignored `requirements.txt`.
+  * Removed notebook-only commands (`!pip`) from production code.
+  * Made ticker lists immutable for caching.
+
+---
+
+## **2. Rationale Behind Each Step**
+
+* **Entry/Exit rules** → Needed to formalize a simple, testable trading strategy.
+* **Backtest metrics** → To compare strategy robustness vs SPY in a professional way.
+* **Modular blocks** → Increased readability and debugging ease.
+* **Streamlit Cloud** → Chosen for simplicity, free hosting, and direct GitHub integration.
+* **GitHub repo setup** → Streamlit Cloud requires a GitHub source.
+* **Pinned requirements/runtime** → Avoided mismatches in Python and package versions.
+* **Install guard** → Safety net for missing packages in the Streamlit runtime.
+
+---
+
+## **3. Changes, Iterations, and Decisions**
+
+* **JupyterHub → Streamlit Cloud**: shifted platform because JupyterHub couldn’t serve a persistent UI.
+* **`Adj Close` bug**: fixed by using `yfinance`’s `"Close"` field consistently.
+* **Caching errors with lists**: solved by converting lists to tuples before caching.
+* **Plotly import errors**: addressed by enforcing installation with `requirements.txt` + install guard.
+* **Notebook-only commands** (`!pip`) → replaced with proper dependency management in `requirements.txt`.
+
+---
+
+## **4. Final Result / Output**
+
+* **Deliverable**: A deployable **Streamlit web app** that provides:
+
+  1. **Stock search interface** → User types a ticker, sees sentiment distribution, post counts, and top Reddit discussions.
+  2. **Portfolio backtest** → User enters up to 5 tickers, sees a 2-year backtest vs SPY with performance metrics, equity curves, and rolling Sharpe.
+
+* **Deployment pipeline**:
+
+  * Code + data pushed to GitHub.
+  * Streamlit Cloud auto-builds environment via `requirements.txt`.
+  * Public app URL generated (accessible via browser).
+
+* **Outstanding**:
+
+  * The app structure works, but deployment debugging continues around `plotly` import.
+  * A minimal `mini_app.py` was suggested as a smoke test.
+  * Once environment resolves correctly, full functionality will be live.
+
+---
+
+✅ **In summary**:
+We transformed a sentiment analysis script into a **web-deployable stock sentiment dashboard + backtesting engine**. The project now has structured modules, a UI layer, and a deployment pipeline (GitHub → Streamlit Cloud). Remaining tweaks are focused on dependency installation reliability.
+
+---
+
