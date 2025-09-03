@@ -7,7 +7,7 @@ import plotly.express as px
 import streamlit as st
 import yfinance as yf
 from pathlib import Path
-    
+
 # Safe in Streamlit runtime; harmless if imported elsewhere
 try:
     st.set_page_config(page_title="Reddit Sentiment & Backtest", layout="wide")
