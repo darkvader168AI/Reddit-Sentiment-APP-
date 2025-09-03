@@ -7,7 +7,7 @@ import plotly.express as px
 import streamlit as st
 import yfinance as yf
 from pathlib import Path
-import praw
+
 
 # Connect to Reddit (replace with your credentials)
 
