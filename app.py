@@ -1,3 +1,20 @@
+# --- install guard: guarantees libs are present even if Cloud cache ignores requirements.txt ---
+import sys, subprocess
+
+def ensure(mod, spec=None):
+    try:
+        __import__(mod)
+    except Exception:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", spec or mod])
+
+# Pin known-good versions
+ensure("plotly", "plotly==5.23.0")
+ensure("pandas", "pandas==2.2.2")
+ensure("numpy", "numpy==1.26.4")
+ensure("yfinance", "yfinance==0.2.40")
+ensure("streamlit", "streamlit==1.37.0")
+
+
 # ---------- Block A: Imports & Config ----------
 import os
 import ast
