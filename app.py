@@ -7,9 +7,6 @@ import plotly.express as px
 import streamlit as st
 import yfinance as yf
 from pathlib import Path
-
-!pip install praw
-
 import praw
 
 # Connect to Reddit (replace with your credentials)
